@@ -20,7 +20,7 @@ function chapter5_1 () {
   class Queen extends Piece {}
   class Bishop extends Piece {}
   class Knight extends Piece {}
-  class Rook extends Piece {}
+  class Roosssssssssssssssssssk extends Piece {}
   class Pawn extends Piece {}
   
   type Color = 'Black' | 'White'

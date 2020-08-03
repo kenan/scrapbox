@@ -63,7 +63,7 @@ function hoge425() {
   }
   
   let e = call(fill, 10, 'a')
-  let f = call(fill, 10)
-  let g = call(fill, 10, 'a', 'z')
+  // let f = call(fill, 10)
+  // let g = call(fill, 10, 'a', 'z')
   
 }
