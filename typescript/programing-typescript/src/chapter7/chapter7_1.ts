@@ -11,7 +11,7 @@ function chapter7_1() {
    * @throws {DateIsInTheFurureError} ユーザーが未来の日付を入力した
    * @param birthday 
    */
-  function parse(birthday: string): Date {
+  function parse(birthday: string): Date | InvalidDateFormatError | DateIsInTheFurureError {
     const date = new Date(birthday)
     if (!isValid(date)) {
       throw new InvalidDateFormatError('Enter a date in the from YYYY/MM/DD')
@@ -28,8 +28,14 @@ function chapter7_1() {
   }
 
   try {
-    const date = parse(ask())
-    console.info('Date is', date.toISOString())
+    const result = parse(ask())
+    if (result instanceof InvalidDateFormatError) {
+      console.error(result.message)
+    } else if (result instanceof DateIsInTheFurureError) {
+      console.error(result.message)
+    } else {
+      console.info('Date is', result.toISOString())
+    }
   } catch(e) {
     if (e instanceof InvalidDateFormatError) {
       console.error(e.message)
@@ -40,5 +46,18 @@ function chapter7_1() {
     }
   }
 
-  
+  // function x(): T | Error1 {
+  // }
+  // function y(): U | Error1 | Error2 {
+  //   let a = x()
+  //   if (a instanceof Error) {
+  //     return a
+  //   }
+  // }
+  // function z(): U | Error1 | Error2 | Error3 {
+  //   let a = y()
+  //   if (a instanceof Error) {
+  //     return a
+  //   }
+  // }
 }
