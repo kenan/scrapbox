@@ -2,11 +2,11 @@ function chapter7_1() {
   function ask() {
     return prompt('When is your birthday?')
   }
-  
-  function parse(birthday: string): Date | null {
+
+  function parse(birthday: string): Date {
     let date = new Date(birthday)
     if (isValid(date)) {
-      return null
+      throw new RangeError('Enter a date in the from YYYY/MM/DD')
     }
     return date
   }
@@ -16,10 +16,10 @@ function chapter7_1() {
     && !Number.isNaN(date.getTime())
   }
 
-  let date = parse(ask())
-  if (date) {
+  try {
+    let date = parse(ask())
     console.info('Date is', date.toISOString())
-  } else {
+  } catch(e) {
     console.error('Error parsing date for some reason')
   }
 }
